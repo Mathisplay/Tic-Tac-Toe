@@ -88,7 +88,7 @@ canvas.One
     font-family: 'Akashi';
     font-weight: normal;
     font-style: normal;
-	font-size: 60px;
+	font-size: 7vh;
 	color: #d9efd7;
 }
 
@@ -97,6 +97,6 @@ canvas.One
     font-family: 'Akashi';
     font-weight: normal;
     font-style: normal;
-	font-size: 60px;
+	font-size: 7vh;
 	color: #000000;
 }
