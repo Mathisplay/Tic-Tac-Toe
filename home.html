@@ -42,12 +42,15 @@
 			var c = document.getElementById("Canvas1");
 			var ctx = c.getContext("2d");
 			
+			//wymiary canvas
 			var wid = parseInt(window.innerWidth * 9 / 10);
 			var hei = parseInt(window.innerHeight * 9 / 10);
 			
+			//ustaw wymiary canvas
 			c.width = window.innerWidth * 9 / 10;
 			c.height = window.innerHeight * 9 / 10;
 			
+			//po jakiej wartości rysować obiekty
 			var okienko;
 			if(c.width > c.height)
 			{
@@ -75,6 +78,7 @@
 			
 			function popraw()
 			{
+				//reset danych okna
 				c.width = window.innerWidth * 9 / 10;
 				c.height = window.innerHeight * 9 / 10;
 				wid = parseInt(window.innerWidth * 9 / 10);
@@ -88,10 +92,13 @@
 				{
 					okienko = wid;
 				}
+				
+				//czyszczenie okna
 				ctx.beginPath();
 				ctx.clearRect(0, 0, wid, hei);
 				ctx.stroke();
 				
+				//narysuj siatkę i uzupełnij współrzędne
 				for(var i = 1; i < 4; i++)
 				{
 					for(var j = 1; j < 4; j++)
@@ -99,7 +106,6 @@
 						var a = ((wid / 2) - (okienko / 5 * 2.5) + (j * (okienko / 5)));
 						var b = ((hei / 2) - (okienko / 5 * 2.5) + (i * (okienko / 5)));
 						xy.push(a + 5);
-						//alert(a + okienko / 5 - 5);
 						xy.push(b + 5);
 						xy.push(a + okienko / 5 - 5);
 						xy.push(b + okienko / 5 - 5);
@@ -111,6 +117,7 @@
 					}
 				}
 				
+				//dalej siatka
 				for(var i = 1; i < 4; i++)
 				{
 					for(var j = 1; j < 4; j++)
@@ -124,6 +131,8 @@
 						ctx.stroke();
 					}
 				}
+				
+				//uzupełnij kółka i krzyżyki
 				for(var i = 0; i < xy.length; i = i + 4)
 				{
 					if(play[i / 4] == 1)
@@ -165,9 +174,13 @@
 			{
 				tura = 0;
 				document.getElementById("Kto").innerHTML = "";
+				
+				//czyszczenie okna
 				ctx.beginPath();
 				ctx.clearRect((wid / 2) - (okienko / 5 * 2.5) + (okienko / 5), (hei / 2) - (okienko / 5 * 2.5) + (okienko / 5), (okienko / 5 * 3), (okienko / 5 * 3));
 				ctx.stroke();
+				
+				//narysuj siatkę i uzupełnij współrzędne
 				for(var i = 1; i < 4; i++)
 				{
 					for(var j = 1; j < 4; j++)
@@ -175,7 +188,6 @@
 						var a = ((wid / 2) - (okienko / 5 * 2.5) + (j * (okienko / 5)));
 						var b = ((hei / 2) - (okienko / 5 * 2.5) + (i * (okienko / 5)));
 						xy.push(a + 5);
-						//alert(a + okienko / 5 - 5);
 						xy.push(b + 5);
 						xy.push(a + okienko / 5 - 5);
 						xy.push(b + okienko / 5 - 5);
@@ -187,6 +199,7 @@
 					}
 				}
 				
+				//dalej siatka
 				for(var i = 1; i < 4; i++)
 				{
 					for(var j = 1; j < 4; j++)
@@ -200,6 +213,8 @@
 						ctx.stroke();
 					}
 				}
+				
+				//resetuj pola
 				for(var i = 0; i < 9; i++)
 				{
 					play[i] = 0;
@@ -209,7 +224,7 @@
 			
 			function checkWin()
 			{
-				//alert("in");
+				//zwycięstwo w wierszu
 				for(var i = 0; i < 9; i = i + 3)
 				{
 					if((play[i] == play[i + 1]) && (play[i + 1] == play[i + 2]) && (play[i] != 0))
@@ -233,6 +248,7 @@
 					}
 				}
 				
+				//zwycięstwo w kolumnie
 				for(var i = 0; i < 3; i++)
 				{
 					if((play[i] == play[i + 3]) && (play[i + 3] == play[i + 6]) && (play[i] != 0))
@@ -256,6 +272,7 @@
 					}
 				}
 				
+				//zwycięstwo "\"
 				if((play[0] == play[4]) && (play[4] == play[8]) && (play[0] != 0))
 				{
 					if(player == 1)
@@ -276,6 +293,7 @@
 					}
 				}
 				
+				//zwycięstwo "/"
 				if((play[2] == play[4]) && (play[4] == play[6]) && (play[2] != 0))
 				{
 					if(player == 1)
@@ -296,6 +314,7 @@
 					}
 				}
 				
+				//jak remis
 				if(win == 0 && tura == 8)
 				{
 					contin = 1;
@@ -318,14 +337,15 @@
 			
 			function which(xmo, ymo)
 			{
+				//uzupełnianie przy klikaniu
 				for(var i = 0; i < xy.length; i = i + 4)
 				{
 					if((xmo >= xy[i]) && (ymo >= xy[i + 1]) && (xmo <= xy[i + 2]) && (ymo <= xy[i + 3]))
 					{
-						//alert(play[i / 4]);
+						//jak nic jeszcze nie ma
 						if(play[i / 4] == 0)
 						{
-							if(player == 1)
+							if(player == 1) //krzyżyk
 							{
 								play[i / 4] = 1;
 								ctx.beginPath();
@@ -344,7 +364,7 @@
 								document.getElementById("Tura").innerHTML = "TURA X";
 								tura++;
 							}
-							else
+							else //kolko
 							{
 								play[i / 4] = 2;
 								ctx.beginPath();
@@ -374,6 +394,7 @@
 				}
 			}
 			
+			//obsługa kliknięć na pola
 			window.addEventListener("click", function()
 			{
 				if(contin == 1)
@@ -386,11 +407,6 @@
 				{
 					var x = event.clientX - Canvas1.offsetLeft;
 					var y = event.clientY - Canvas1.offsetTop;
-					//alert(x);
-					/*ctx.beginPath();
-					ctx.lineWidth="10";
-					ctx.strokeStyle="white";
-					ctx.rect(x, y, 10, 10);*/
 					which(x, y);
 					ctx.stroke();
 				}
