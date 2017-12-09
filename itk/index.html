@@ -143,10 +143,14 @@
 				{
 					//jak nic jeszcze nie ma
 					if(data.is_move == 1)
-					{
-						tictactoeConn.move(i / 4);
-						play = data.field;
-						popraw();
+					{	
+						function displayField(data)
+						{
+							tictactoeConn.move(i / 4);
+							play = data.field;
+							popraw();
+						}
+						tictactoeConn.init(displayField);
 					}
 				}
 			}
@@ -166,7 +170,6 @@
 				var x = event.clientX - Canvas1.offsetLeft;
 				var y = event.clientY - Canvas1.offsetTop;
 				which(x, y);
-				ctx.stroke();
 			}
 		});
 
