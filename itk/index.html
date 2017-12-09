@@ -38,16 +38,49 @@
 				<p id="Tura" class="Czcionka3">Made by Mathis</p>
 			</div>
 			<div class="Text7">
-				<p id="Kolko" class="Czcionka4">JA</p>
+				<p id="Ja" class="Czcionka4">JA</p>
 			</div>
 			<div class="Text8">
-				<p id="Kolko" class="Czcionka4">PRZECIWNIK</p>
+				<p id="Przeciwnik" class="Czcionka4">PRZECIWNIK</p>
 			</div>
 		</div>
 		
 		
 		
 		<script>
+		
+			function displayField(data){
+			/*
+			
+			Tutaj kod wyświetlający kóło i krzyżyk
+			
+			
+			Co zawiera objekt data:
+			
+				data.nick - nazwa zalogowanego gracza
+			
+				data.nickopp - nazwa przeciwnika
+
+				data.conf - Symbol gracza: 1 - kółko, 2 - krzyżyk
+			
+				data.field - tablica 9 elementowa pól: 0 - brak, 1 - kółko, 2 - krzyżyk 
+					(od górnego lewego rogu chyba, ale jak wygodniej to nie ma znaczenia)
+			
+				data.score - tablica wyników: data.score[0] - wynik gracza zalogowanego, data.score[1] - wynik przeciwnika
+
+				data.status - status gry: 0 - trwa, 1 - wygrało kółko, 2 - wygrał krzyżyk, 3 - nikt nie wygrał
+				
+				Gdy data.status == 0:
+					data.is_move - jeżeli 1 to ruch gracza, jeżeli 0 to ruch przeciwnika
+					
+				Gdy data.status != 0:
+					data.is_invite - jeżeli 0 to nie ma zaproszenia, jeżeli 1 to jest zaproszenie od przeciwnika
+						wtedy można akceptować grę
+			
+			*/
+			
+			document.getElementById("Ja").innerHTML = data.nick;
+			document.getElementById("Przeciwnik").innerHTML = data.nickopp;
 			//obsluga okienka
 			var c = document.getElementById("Canvas1");
 			var ctx = c.getContext("2d");
@@ -421,6 +454,10 @@
 					ctx.stroke();
 				}
 			});
+			console.log(data.nick);//Wyświetla w konsoli nazwę gracza
+			console.log(data.score[0]);//Wyświetla w konsoli wynik gracza
+		}
+		tictactoeConn.init(displayField);
 		</script>
 	</body>
 </html>
