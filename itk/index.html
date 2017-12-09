@@ -71,6 +71,7 @@
 			okienko = wid;
 		}
 		//gra
+		var ruch;
 		var tura = 0;
 		var xy = [];
 		var play = [];
@@ -111,6 +112,7 @@
 			tictactoeConn.accept();
 			akceptuje zaproszenie do gry
 			*/
+			ruch = data.is_move;
 			var jaNick = data.nick;
 			var oppNick = data.nickopp;
 			var czymGram = data.conf;
@@ -143,7 +145,7 @@
 				if((xmo >= xy[i]) && (ymo >= xy[i + 1]) && (xmo <= xy[i + 2]) && (ymo <= xy[i + 3]))
 				{
 					//jak nic jeszcze nie ma
-					if(data.is_move == 1)
+					if(ruch == 1)
 					{	
 						tictactoeConn.move(i / 4);
 						popraw();
@@ -161,7 +163,7 @@
 				contin = 0;
 				win = 0;
 			}*/
-			if(data.is_move == 1)
+			if(ruch == 1)
 			{
 				var x = event.clientX - Canvas1.offsetLeft;
 				var y = event.clientY - Canvas1.offsetTop;
