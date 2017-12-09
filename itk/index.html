@@ -48,89 +48,90 @@
 		
 		
 		<script>
-			//obsluga okienka
-			var c = document.getElementById("Canvas1");
-			var ctx = c.getContext("2d");
+		//obsluga okienka
+		var c = document.getElementById("Canvas1");
+		var ctx = c.getContext("2d");		
 			
-			//wymiary canvas
-			var wid = parseInt(window.innerWidth * 9 / 10);
-			var hei = parseInt(window.innerHeight * 9 / 10);
+		//wymiary canvas
+		var wid = parseInt(window.innerWidth * 9 / 10);
+		var hei = parseInt(window.innerHeight * 9 / 10);
 			
-			//ustaw wymiary canvas
-			c.width = window.innerWidth * 9 / 10;
-			c.height = window.innerHeight * 9 / 10;
+		//ustaw wymiary canvas
+		c.width = window.innerWidth * 9 / 10;
+		c.height = window.innerHeight * 9 / 10;
 			
-			//po jakiej wartości rysować obiekty
-			var okienko;
-			if(c.width > c.height)
+		//po jakiej wartości rysować obiekty
+		var okienko;
+		if(c.width > c.height)
+		{
+			okienko = hei;
+		}
+		else
+		{
+			okienko = wid;
+		}
+		//gra
+		var tura = 0;
+		var xy = [];
+		var play = [];
+		
+		function displayField(data)
+		{
+			/*
+			Tutaj kod wyświetlający kóło i krzyżyk
+
+			Co zawiera objekt data:
+
+			data.nick - nazwa zalogowanego gracza
+
+			data.nickopp - nazwa przeciwnika
+
+			data.conf - Symbol gracza: 1 - kółko, 2 - krzyżyk
+
+			data.field - tablica 9 elementowa pól: 0 - brak, 1 - kółko, 2 - krzyżyk 
+			(od górnego lewego rogu chyba, ale jak wygodniej to nie ma znaczenia)
+
+			data.score - tablica wyników: data.score[0] - wynik gracza zalogowanego, data.score[1] - wynik przeciwnika
+			data.status - status gry: 0 - trwa, 1 - wygrało kółko, 2 - wygrał krzyżyk, 3 - nikt nie wygrał
+
+			Gdy data.status == 0:
+				data.is_move - jeżeli 1 to ruch gracza, jeżeli 0 to ruch przeciwnika
+
+			Gdy data.status != 0:
+				data.is_invite - jeżeli 0 to nie ma zaproszenia, jeżeli 1 to jest zaproszenie od przeciwnika
+					wtedy można akceptować grę
+
+			tictactoeConn.move(pos);
+			pos to wartość int od 0 do 8 oznaczające pole, które wybrał gracz na planszy
+			wysła do serwera ruch gracza
+
+			tictactoeConn.invite();
+			wysyła do przeciwnika zaproszenie do następnej gry z serii
+
+			tictactoeConn.accept();
+			akceptuje zaproszenie do gry
+			*/
+			var jaNick = data.nick;
+			var oppNick = data.nickopp;
+			var czymGram = data.conf;
+			if(czymGram == 1)
 			{
-				okienko = hei;
+				document.getElementById("Kolko").innerHTML = "O: " + data.score[0];
+				document.getElementById("Krzyzyk").innerHTML = "X: " + data.score[1];
 			}
 			else
 			{
-				okienko = wid;
+				document.getElementById("Kolko").innerHTML = "X: " + data.score[0];
+				document.getElementById("Krzyzyk").innerHTML = "O: " + data.score[1];
 			}
-			//gra
-			var tura = 0;
-			var xy = [];
-			var play = [];
 			
-			function displayField(data)
-			{
-				/*
-			
-				Tutaj kod wyświetlający kóło i krzyżyk
-			
-			
-				Co zawiera objekt data:
-			
-				data.nick - nazwa zalogowanego gracza
-			
-				data.nickopp - nazwa przeciwnika
-				
-				data.conf - Symbol gracza: 1 - kółko, 2 - krzyżyk
-		
-				data.field - tablica 9 elementowa pól: 0 - brak, 1 - kółko, 2 - krzyżyk 
-				(od górnego lewego rogu chyba, ale jak wygodniej to nie ma znaczenia)
-					
-				data.score - tablica wyników: data.score[0] - wynik gracza zalogowanego, data.score[1] - wynik przeciwnika
-				data.status - status gry: 0 - trwa, 1 - wygrało kółko, 2 - wygrał krzyżyk, 3 - nikt nie wygrał
-			
-				Gdy data.status == 0:
-					data.is_move - jeżeli 1 to ruch gracza, jeżeli 0 to ruch przeciwnika
-				
-				Gdy data.status != 0:
-					data.is_invite - jeżeli 0 to nie ma zaproszenia, jeżeli 1 to jest zaproszenie od przeciwnika
-						wtedy można akceptować grę
-				
-				tictactoeConn.move(pos);
-				pos to wartość int od 0 do 8 oznaczające pole, które wybrał gracz na planszy
-				wysła do serwera ruch gracza
-			
-				tictactoeConn.invite();
-				wysyła do przeciwnika zaproszenie do następnej gry z serii
-				
-				tictactoeConn.accept();
-				akceptuje zaproszenie do gry
-				
-				*/
-				var jaNick = data.nick;
-				var oppNick = data.nickopp;
-				var czymGram = data.conf;
-				if(czymGram == 1)
-				{
-					document.getElementById("Kolko").innerHTML = "O: " + data.score[0];
-					document.getElementById("Krzyzyk").innerHTML = "X: " + data.score[1];
-				}
-				else
-				{
-					document.getElementById("Kolko").innerHTML = "X: " + data.score[0];
-					document.getElementById("Krzyzyk").innerHTML = "O: " + data.score[1];
-				}
-			
-				document.getElementById("Ja").innerHTML = jaNick;
-				document.getElementById("Przeciwnik").innerHTML = oppNick;
-			}
+			document.getElementById("Ja").innerHTML = jaNick;
+			document.getElementById("Przeciwnik").innerHTML = oppNick;
+			console.log(data.nick);//Wyświetla w konsoli nazwę gracza
+			console.log(data.score[0]);//Wyświetla w konsoli wynik gracza
+			console.log(data.field);
+			play = data.field;
+		}
 		tictactoeConn.init(displayField);
 		
 		function which(xmo, ymo)
@@ -168,11 +169,7 @@
 				ctx.stroke();
 			}
 		});
-		console.log(data.nick);//Wyświetla w konsoli nazwę gracza
-		console.log(data.score[0]);//Wyświetla w konsoli wynik gracza
-		console.log(data.field);
-		play = data.field;
-		
+
 		function popraw()
 		{
 			//reset danych okna
