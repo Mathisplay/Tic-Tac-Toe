@@ -48,7 +48,32 @@
 		
 		
 		<script>
-		
+			//obsluga okienka
+			var c = document.getElementById("Canvas1");
+			var ctx = c.getContext("2d");
+			
+			//wymiary canvas
+			var wid = parseInt(window.innerWidth * 9 / 10);
+			var hei = parseInt(window.innerHeight * 9 / 10);
+			
+			//ustaw wymiary canvas
+			c.width = window.innerWidth * 9 / 10;
+			c.height = window.innerHeight * 9 / 10;
+			
+			//po jakiej wartości rysować obiekty
+			var okienko;
+			if(c.width > c.height)
+			{
+				okienko = hei;
+			}
+			else
+			{
+				okienko = wid;
+			}
+			//gra
+			var tura = 0;
+			var xy = [];
+			
 			function displayField(data){
 			/*
 			
@@ -104,127 +129,7 @@
 			
 			document.getElementById("Ja").innerHTML = jaNick;
 			document.getElementById("Przeciwnik").innerHTML = oppNick;
-			//obsluga okienka
-			var c = document.getElementById("Canvas1");
-			var ctx = c.getContext("2d");
-			
-			//wymiary canvas
-			var wid = parseInt(window.innerWidth * 9 / 10);
-			var hei = parseInt(window.innerHeight * 9 / 10);
-			
-			//ustaw wymiary canvas
-			c.width = window.innerWidth * 9 / 10;
-			c.height = window.innerHeight * 9 / 10;
-			
-			//po jakiej wartości rysować obiekty
-			var okienko;
-			if(c.width > c.height)
-			{
-				okienko = hei;
-			}
-			else
-			{
-				okienko = wid;
-			}
-			
-			//gra
-			var tura = 0;
-			var xy = [];
-			
-			function popraw()
-			{
-				//reset danych okna
-				c.width = window.innerWidth * 9 / 10;
-				c.height = window.innerHeight * 9 / 10;
-				wid = parseInt(window.innerWidth * 9 / 10);
-				hei = parseInt(window.innerHeight * 9 / 10);
-				xy.length = 0;
-				if(c.width > c.height)
-				{
-					okienko = hei;
-				}
-				else
-				{
-					okienko = wid;
-				}
-				
-				//czyszczenie okna
-				ctx.beginPath();
-				ctx.clearRect(0, 0, wid, hei);
-				ctx.stroke();
-				
-				//narysuj siatkę i uzupełnij współrzędne
-				for(var i = 1; i < 4; i++)
-				{
-					for(var j = 1; j < 4; j++)
-					{
-						var a = ((wid / 2) - (okienko / 5 * 2.5) + (j * (okienko / 5)));
-						var b = ((hei / 2) - (okienko / 5 * 2.5) + (i * (okienko / 5)));
-						xy.push(a + 5);
-						xy.push(b + 5);
-						xy.push(a + okienko / 5 - 5);
-						xy.push(b + okienko / 5 - 5);
-						ctx.beginPath();
-						ctx.lineWidth="10";
-						ctx.strokeStyle="#65676B";
-						ctx.rect((wid / 2) - (okienko / 5 * 2.5) + (j * (okienko / 5)) + 4, (hei / 2) - (okienko / 5 * 2.5) + (i * (okienko / 5)) + 4, (okienko / 5), (okienko / 5));
-						ctx.stroke();
-					}
-				}
-				
-				//dalej siatka
-				for(var i = 1; i < 4; i++)
-				{
-					for(var j = 1; j < 4; j++)
-					{
-						var a = ((wid / 2) - (okienko / 5 * 2.5) + (j * (okienko / 5)));
-						var b = ((hei / 2) - (okienko / 5 * 2.5) + (i * (okienko / 5)));
-						ctx.beginPath();
-						ctx.lineWidth="10";
-						ctx.strokeStyle="white";
-						ctx.rect((wid / 2) - (okienko / 5 * 2.5) + (j * (okienko / 5)), (hei / 2) - (okienko / 5 * 2.5) + (i * (okienko / 5)), (okienko / 5), (okienko / 5));
-						ctx.stroke();
-					}
-				}
-				
-				//uzupełnij kółka i krzyżyki
-				for(var i = 0; i < xy.length; i = i + 4)
-				{
-					if(data.field[i / 4] == 1)
-					{
-						ctx.beginPath();
-						ctx.lineWidth="10";
-						ctx.strokeStyle="#65676B";
-						ctx.arc((xy[i] + xy[i + 2]) / 2 + 2, (xy[i + 1] + xy[i + 3]) / 2 + 4, (xy[i + 3] - xy[i + 1]) / 2 - 14, 0, 2 * Math.PI);
-						ctx.stroke();					
-						ctx.beginPath();
-						ctx.lineWidth="10";
-						ctx.strokeStyle="white";
-						ctx.arc((xy[i] + xy[i + 2]) / 2, (xy[i + 1] + xy[i + 3]) / 2, (xy[i + 3] - xy[i + 1]) / 2 - 14, 0, 2 * Math.PI);
-						ctx.stroke();
-					}
-					else if(data.field[i / 4] == 2)
-					{
-						ctx.beginPath();
-						ctx.lineWidth="10";
-						ctx.strokeStyle="#65676B";
-						ctx.moveTo(xy[i] + 14, xy[i + 1] + 18);
-						ctx.lineTo(xy[i + 2] - 14, xy[i + 3] - 10);
-						ctx.moveTo(xy[i + 2] - 10, xy[i + 1] + 16);
-						ctx.lineTo(xy[i] + 18, xy[i + 3] - 12);
-						ctx.stroke();			
-						ctx.beginPath();
-						ctx.lineWidth="10";
-						ctx.strokeStyle="white";
-						ctx.moveTo(xy[i] + 14, xy[i + 1] + 14);
-						ctx.lineTo(xy[i + 2] - 14, xy[i + 3] - 14);
-						ctx.moveTo(xy[i + 2] - 14, xy[i + 1] + 14);
-						ctx.lineTo(xy[i] + 14, xy[i + 3] - 14);
-						ctx.stroke();
-					}
-				}
-			}
-			
+
 			function resetField()
 			{
 				tura = 0;
@@ -309,6 +214,100 @@
 			console.log(data.score[0]);//Wyświetla w konsoli wynik gracza
 		}
 		tictactoeConn.init(displayField);
+		
+		function popraw()
+		{
+			//reset danych okna
+			c.width = window.innerWidth * 9 / 10;
+			c.height = window.innerHeight * 9 / 10;
+			wid = parseInt(window.innerWidth * 9 / 10);
+			hei = parseInt(window.innerHeight * 9 / 10);
+			xy.length = 0;
+			if(c.width > c.height)
+			{
+				okienko = hei;
+			}
+			else
+			{
+				okienko = wid;
+			}
+				
+			//czyszczenie okna
+			ctx.beginPath();
+			ctx.clearRect(0, 0, wid, hei);
+			ctx.stroke();
+				
+			//narysuj siatkę i uzupełnij współrzędne
+			for(var i = 1; i < 4; i++)
+			{
+				for(var j = 1; j < 4; j++)
+				{
+					var a = ((wid / 2) - (okienko / 5 * 2.5) + (j * (okienko / 5)));
+					var b = ((hei / 2) - (okienko / 5 * 2.5) + (i * (okienko / 5)));
+					xy.push(a + 5);
+					xy.push(b + 5);
+					xy.push(a + okienko / 5 - 5);
+					xy.push(b + okienko / 5 - 5);
+					ctx.beginPath();
+					ctx.lineWidth="10";
+					ctx.strokeStyle="#65676B";
+					ctx.rect((wid / 2) - (okienko / 5 * 2.5) + (j * (okienko / 5)) + 4, (hei / 2) - (okienko / 5 * 2.5) + (i * (okienko / 5)) + 4, (okienko / 5), (okienko / 5));
+					ctx.stroke();
+				}
+			}
+				
+			//dalej siatka
+			for(var i = 1; i < 4; i++)
+			{
+				for(var j = 1; j < 4; j++)
+				{
+					var a = ((wid / 2) - (okienko / 5 * 2.5) + (j * (okienko / 5)));
+					var b = ((hei / 2) - (okienko / 5 * 2.5) + (i * (okienko / 5)));
+					ctx.beginPath();
+					ctx.lineWidth="10";
+					ctx.strokeStyle="white";
+					ctx.rect((wid / 2) - (okienko / 5 * 2.5) + (j * (okienko / 5)), (hei / 2) - (okienko / 5 * 2.5) + (i * (okienko / 5)), (okienko / 5), (okienko / 5));
+					ctx.stroke();
+				}
+			}
+				
+			//uzupełnij kółka i krzyżyki
+			for(var i = 0; i < xy.length; i = i + 4)
+			{
+				if(data.field[i / 4] == 1)
+				{
+					ctx.beginPath();
+					ctx.lineWidth="10";
+					ctx.strokeStyle="#65676B";
+					ctx.arc((xy[i] + xy[i + 2]) / 2 + 2, (xy[i + 1] + xy[i + 3]) / 2 + 4, (xy[i + 3] - xy[i + 1]) / 2 - 14, 0, 2 * Math.PI);
+					ctx.stroke();					
+					ctx.beginPath();
+					ctx.lineWidth="10";
+					ctx.strokeStyle="white";
+					ctx.arc((xy[i] + xy[i + 2]) / 2, (xy[i + 1] + xy[i + 3]) / 2, (xy[i + 3] - xy[i + 1]) / 2 - 14, 0, 2 * Math.PI);
+					ctx.stroke();
+				}
+				else if(data.field[i / 4] == 2)
+				{
+					ctx.beginPath();
+					ctx.lineWidth="10";
+					ctx.strokeStyle="#65676B";
+					ctx.moveTo(xy[i] + 14, xy[i + 1] + 18);
+					ctx.lineTo(xy[i + 2] - 14, xy[i + 3] - 10);
+					ctx.moveTo(xy[i + 2] - 10, xy[i + 1] + 16);
+					ctx.lineTo(xy[i] + 18, xy[i + 3] - 12);
+					ctx.stroke();			
+					ctx.beginPath();
+					ctx.lineWidth="10";
+					ctx.strokeStyle="white";
+					ctx.moveTo(xy[i] + 14, xy[i + 1] + 14);
+					ctx.lineTo(xy[i + 2] - 14, xy[i + 3] - 14);
+					ctx.moveTo(xy[i + 2] - 14, xy[i + 1] + 14);
+					ctx.lineTo(xy[i] + 14, xy[i + 3] - 14);
+					ctx.stroke();
+				}
+			}
+		}
 		</script>
 	</body>
 </html>
