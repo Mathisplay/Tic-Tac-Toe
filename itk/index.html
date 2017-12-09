@@ -73,6 +73,7 @@
 			//gra
 			var tura = 0;
 			var xy = [];
+			var play = [];
 			
 			function displayField(data){
 			/*
@@ -132,6 +133,7 @@
 
 			function resetField()
 			{
+				play = data.field;
 				tura = 0;
 				document.getElementById("Kto").innerHTML = "";
 				
@@ -187,6 +189,7 @@
 						if(data.is_move == 1)
 						{
 							tictactoeConn.move(i / 4);
+							play = data.field;
 							popraw();
 						}
 					}
@@ -218,100 +221,96 @@
 		
 		function popraw()
 		{
-			function displayField(data)
+			//reset danych okna
+			c.width = window.innerWidth * 9 / 10;
+			c.height = window.innerHeight * 9 / 10;
+			wid = parseInt(window.innerWidth * 9 / 10);
+			hei = parseInt(window.innerHeight * 9 / 10);
+			xy.length = 0;
+			if(c.width > c.height)
 			{
-				//reset danych okna
-				c.width = window.innerWidth * 9 / 10;
-				c.height = window.innerHeight * 9 / 10;
-				wid = parseInt(window.innerWidth * 9 / 10);
-				hei = parseInt(window.innerHeight * 9 / 10);
-				xy.length = 0;
-				if(c.width > c.height)
-				{
-					okienko = hei;
-				}
-				else
-				{
-					okienko = wid;
-				}
+				okienko = hei;
+			}
+			else
+			{
+				okienko = wid;
+			}
 
-				//czyszczenie okna
-				ctx.beginPath();
-				ctx.clearRect(0, 0, wid, hei);
-				ctx.stroke();
-
-				//narysuj siatkę i uzupełnij współrzędne
-				for(var i = 1; i < 4; i++)
+			//czyszczenie okna
+			ctx.beginPath();
+			ctx.clearRect(0, 0, wid, hei);
+			ctx.stroke();
+				
+			//narysuj siatkę i uzupełnij współrzędne
+			for(var i = 1; i < 4; i++)
+			{
+				for(var j = 1; j < 4; j++)
 				{
-					for(var j = 1; j < 4; j++)
-					{
-						var a = ((wid / 2) - (okienko / 5 * 2.5) + (j * (okienko / 5)));
-						var b = ((hei / 2) - (okienko / 5 * 2.5) + (i * (okienko / 5)));
-						xy.push(a + 5);
-						xy.push(b + 5);
-						xy.push(a + okienko / 5 - 5);
-						xy.push(b + okienko / 5 - 5);
-						ctx.beginPath();
-						ctx.lineWidth="10";
-						ctx.strokeStyle="#65676B";
-						ctx.rect((wid / 2) - (okienko / 5 * 2.5) + (j * (okienko / 5)) + 4, (hei / 2) - (okienko / 5 * 2.5) + (i * (okienko / 5)) + 4, (okienko / 5), (okienko / 5));
-						ctx.stroke();
-					}
-				}
-
-				//dalej siatka
-				for(var i = 1; i < 4; i++)
-				{
-					for(var j = 1; j < 4; j++)
-					{
-						var a = ((wid / 2) - (okienko / 5 * 2.5) + (j * (okienko / 5)));
-						var b = ((hei / 2) - (okienko / 5 * 2.5) + (i * (okienko / 5)));
-						ctx.beginPath();
-						ctx.lineWidth="10";
-						ctx.strokeStyle="white";
-						ctx.rect((wid / 2) - (okienko / 5 * 2.5) + (j * (okienko / 5)), (hei / 2) - (okienko / 5 * 2.5) + (i * (okienko / 5)), (okienko / 5), (okienko / 5));
-						ctx.stroke();
-					}
-				}
-
-				//uzupełnij kółka i krzyżyki
-				for(var i = 0; i < xy.length; i = i + 4)
-				{
-					if(data.field[i / 4] == 1)
-					{
-						ctx.beginPath();
-						ctx.lineWidth="10";
-						ctx.strokeStyle="#65676B";
-						ctx.arc((xy[i] + xy[i + 2]) / 2 + 2, (xy[i + 1] + xy[i + 3]) / 2 + 4, (xy[i + 3] - xy[i + 1]) / 2 - 14, 0, 2 * Math.PI);
-						ctx.stroke();					
-						ctx.beginPath();
-						ctx.lineWidth="10";
-						ctx.strokeStyle="white";
-						ctx.arc((xy[i] + xy[i + 2]) / 2, (xy[i + 1] + xy[i + 3]) / 2, (xy[i + 3] - xy[i + 1]) / 2 - 14, 0, 2 * Math.PI);
-						ctx.stroke();
-					}
-					else if(data.field[i / 4] == 2)
-					{
-						ctx.beginPath();
-						ctx.lineWidth="10";
-						ctx.strokeStyle="#65676B";
-						ctx.moveTo(xy[i] + 14, xy[i + 1] + 18);
-						ctx.lineTo(xy[i + 2] - 14, xy[i + 3] - 10);
-						ctx.moveTo(xy[i + 2] - 10, xy[i + 1] + 16);
-						ctx.lineTo(xy[i] + 18, xy[i + 3] - 12);
-						ctx.stroke();			
-						ctx.beginPath();
-						ctx.lineWidth="10";
-						ctx.strokeStyle="white";
-						ctx.moveTo(xy[i] + 14, xy[i + 1] + 14);
-						ctx.lineTo(xy[i + 2] - 14, xy[i + 3] - 14);
-						ctx.moveTo(xy[i + 2] - 14, xy[i + 1] + 14);
-						ctx.lineTo(xy[i] + 14, xy[i + 3] - 14);
-						ctx.stroke();
-					}
+					var a = ((wid / 2) - (okienko / 5 * 2.5) + (j * (okienko / 5)));
+					var b = ((hei / 2) - (okienko / 5 * 2.5) + (i * (okienko / 5)));
+					xy.push(a + 5);
+					xy.push(b + 5);
+					xy.push(a + okienko / 5 - 5);
+					xy.push(b + okienko / 5 - 5);
+					ctx.beginPath();
+					ctx.lineWidth="10";
+					ctx.strokeStyle="#65676B";
+					ctx.rect((wid / 2) - (okienko / 5 * 2.5) + (j * (okienko / 5)) + 4, (hei / 2) - (okienko / 5 * 2.5) + (i * (okienko / 5)) + 4, (okienko / 5), (okienko / 5));
+					ctx.stroke();
 				}
 			}
-			tictactoeConn.init(displayField);
+
+			//dalej siatka
+			for(var i = 1; i < 4; i++)
+			{
+				for(var j = 1; j < 4; j++)
+				{
+					var a = ((wid / 2) - (okienko / 5 * 2.5) + (j * (okienko / 5)));
+					var b = ((hei / 2) - (okienko / 5 * 2.5) + (i * (okienko / 5)));
+					ctx.beginPath();
+					ctx.lineWidth="10";
+					ctx.strokeStyle="white";
+					ctx.rect((wid / 2) - (okienko / 5 * 2.5) + (j * (okienko / 5)), (hei / 2) - (okienko / 5 * 2.5) + (i * (okienko / 5)), (okienko / 5), (okienko / 5));
+					ctx.stroke();
+				}
+			}
+
+			//uzupełnij kółka i krzyżyki
+			for(var i = 0; i < xy.length; i = i + 4)
+			{
+				if(play[i / 4] == 1)
+				{
+					ctx.beginPath();
+					ctx.lineWidth="10";
+					ctx.strokeStyle="#65676B";
+					ctx.arc((xy[i] + xy[i + 2]) / 2 + 2, (xy[i + 1] + xy[i + 3]) / 2 + 4, (xy[i + 3] - xy[i + 1]) / 2 - 14, 0, 2 * Math.PI);
+					ctx.stroke();					
+					ctx.beginPath();
+					ctx.lineWidth="10";
+					ctx.strokeStyle="white";
+					ctx.arc((xy[i] + xy[i + 2]) / 2, (xy[i + 1] + xy[i + 3]) / 2, (xy[i + 3] - xy[i + 1]) / 2 - 14, 0, 2 * Math.PI);
+					ctx.stroke();
+				}
+				else if(play[i / 4] == 2)
+				{
+					ctx.beginPath();
+					ctx.lineWidth="10";
+					ctx.strokeStyle="#65676B";
+					ctx.moveTo(xy[i] + 14, xy[i + 1] + 18);
+					ctx.lineTo(xy[i + 2] - 14, xy[i + 3] - 10);
+					ctx.moveTo(xy[i + 2] - 10, xy[i + 1] + 16);
+					ctx.lineTo(xy[i] + 18, xy[i + 3] - 12);
+					ctx.stroke();			
+					ctx.beginPath();
+					ctx.lineWidth="10";
+					ctx.strokeStyle="white";
+					ctx.moveTo(xy[i] + 14, xy[i + 1] + 14);
+					ctx.lineTo(xy[i + 2] - 14, xy[i + 3] - 14);
+					ctx.moveTo(xy[i + 2] - 14, xy[i + 1] + 14);
+					ctx.lineTo(xy[i] + 14, xy[i + 3] - 14);
+					ctx.stroke();
+				}
+			}
 		}
 		</script>
 	</body>
