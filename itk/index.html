@@ -144,13 +144,8 @@
 					//jak nic jeszcze nie ma
 					if(data.is_move == 1)
 					{	
-						function displayField(data)
-						{
-							tictactoeConn.move(i / 4);
-							play = data.field;
-							popraw();
-						}
-						tictactoeConn.init(displayField);
+						tictactoeConn.move(i / 4);
+						popraw();
 					}
 				}
 			}
