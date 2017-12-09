@@ -52,7 +52,7 @@ div.Text3
 	position: absolute;
 	margin-left: 10vw;
 	width: 10vw;
-	top: 10vh;
+	top: 18vh;
 	background-color: #82eda0;
 }
 
@@ -62,7 +62,7 @@ div.Text4
 	position: absolute;
 	margin-left: 80vw;
 	width: 10vw;
-	top: 10vh;
+	top: 18vh;
 	background-color: #82eda0;
 }
 
@@ -84,6 +84,26 @@ div.Text6
 	width: 20vw;
 	bottom: 0.35vw;
 	background-color: #7871f2;
+}
+
+div.Text7
+{
+	text-align: center;
+	position: absolute;
+	margin-left: 10vw;
+	width: 20vw;
+	top: 10vh;
+	background-color: #316ec4;
+}
+
+div.Text8
+{
+	text-align: center;
+	position: absolute;
+	margin-left: 70vw;
+	width: 20vw;
+	top: 10vh;
+	background-color: #316ec4;
 }
 
 canvas.One
@@ -119,5 +139,14 @@ canvas.One
     font-weight: normal;
     font-style: normal;
 	font-size: 3vh;
+	color: #000000;
+}
+
+.Czcionka4
+{
+    font-family: 'Akashi';
+    font-weight: normal;
+    font-style: normal;
+	font-size: 5vh;
 	color: #000000;
 }
