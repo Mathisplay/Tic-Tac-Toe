@@ -116,6 +116,30 @@
 			var jaNick = data.nick;
 			var oppNick = data.nickopp;
 			var czymGram = data.conf;
+			
+			if(czymGram == 1)
+			{
+				if(ruch == 1)
+				{
+					document.getElementById("Tura").innerHTML = "TURA O";
+				}
+				else
+				{
+					document.getElementById("Tura").innerHTML = "TURA X";
+				}
+			}
+			else
+			{
+				if(ruch == 1)
+				{
+					document.getElementById("Tura").innerHTML = "TURA X";
+				}
+				else
+				{
+					document.getElementById("Tura").innerHTML = "TURA O";
+				}
+			}
+			
 			if(czymGram == 1)
 			{
 				document.getElementById("Kolko").innerHTML = "O: " + data.score[0];
