@@ -162,7 +162,7 @@ canvas.One
 
 .rewanz
 {
-   	border: 5px solid #000000;
+   	border: 6px solid #ffffff;
 	text-shadow: #0e752f 0 1px 0;
    	background: #39cc67;
    	background: -webkit-gradient(linear, left top, left bottom, from(#8fffad), to(#39cc67));
@@ -187,7 +187,7 @@ canvas.One
 }
 .rewanz:hover
 {
-  	border: 5px solid #0a3c59;
+  	border: 6px solid #0a3c59;
    	background: #3e779d;
   	background: -webkit-gradient(linear, left top, left bottom, from(#7ef27e), to(#49e549));
   	background: -webkit-linear-gradient(top, #7ef27e, #49e549);
@@ -200,7 +200,7 @@ canvas.One
 .rewanz:active
 {
   	text-shadow: #000000 0 1px 0;
-  	border: 5px solid #000000;
+  	border: 6px solid #ffffff;
   	background: #e89056;
   	background: -webkit-gradient(linear, left top, left bottom, from(#9c893e), to(#39cc67));
   	background: -webkit-linear-gradient(top, #9c893e, #e89056);
