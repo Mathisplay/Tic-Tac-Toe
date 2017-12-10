@@ -44,7 +44,7 @@
 				<p id="Przeciwnik" class="Czcionka4">PRZECIWNIK</p>
 			</div>
 			<div class="Revenge">
-				<button id="Przycisk1" class="rewanz" onclick="tictactoeConn.invite()" style="outline: 0">REMATCH</button>
+				<button id="Przycisk1" class="rewanz" onclick="invitation()" style="outline: 0">REMATCH</button>
 			</div>
 			<div class="Revenge">
 				<button id="Przycisk2" class="rewanz" onclick="tictactoeConn.accept()" style="outline: 0">BRING IT ON</button>
@@ -166,6 +166,7 @@
 			if(data.status == 1)
 			{
 				document.getElementById("Kto").innerHTML = "O WINS";
+				document.getElementById("Przycisk1").disabled = false;
 				if(data.is_invite == 0)
 				{
 					document.getElementById('Przycisk1').style.display="initial";
@@ -180,6 +181,7 @@
 			else if(data.status == 2)
 			{
 				document.getElementById("Kto").innerHTML = "X WINS";
+				document.getElementById("Przycisk1").disabled = false;
 				if(data.is_invite == 0)
 				{
 					document.getElementById('Przycisk1').style.display="initial";
@@ -194,6 +196,7 @@
 			else if(data.status == 3)
 			{
 				document.getElementById("Kto").innerHTML = "TIE";
+				document.getElementById("Przycisk1").disabled = false;
 				if(data.is_invite == 0)
 				{
 					document.getElementById('Przycisk1').style.display="initial";
@@ -215,6 +218,13 @@
 		}
 		tictactoeConn.init(displayField);
 		
+		function invitation()
+		{
+			document.getElementById("Przycisk1").disabled = true;
+			document.getElementById("Kto").innerHTML = "PENDING...";
+			tictactoeConn.invite();
+		}
+			
 		function which(xmo, ymo)
 		{
 			//uzupełnianie przy klikaniu
