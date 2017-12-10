@@ -160,7 +160,7 @@ canvas.One
 	color: #000000;
 }
 
-button.rewanż
+.rewanż
 {
 	-moz-box-shadow:inset 0px 1px 0px 0px #a4e271;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #a4e271;
@@ -184,7 +184,7 @@ button.rewanż
 	text-decoration:none;
 	text-shadow:2px 2px 0px #528009;
 }
-button.rewanż:hover
+.rewanż:hover
 {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77a809), color-stop(1, #89c403));
 	background:-moz-linear-gradient(top, #77a809 5%, #89c403 100%);
@@ -195,7 +195,7 @@ button.rewanż:hover
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77a809', endColorstr='#89c403',GradientType=0);
 	background-color:#77a809;
 }
-button.rewanż:active
+.rewanż:active
 {
 	position:relative;
 	top:1px;
