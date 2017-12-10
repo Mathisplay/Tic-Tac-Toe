@@ -157,6 +157,18 @@
 			console.log(data.score[0]);//Wyświetla w konsoli wynik gracza
 			console.log(data.field);
 			play = data.field;
+			if(data.status == 1)
+			{
+				document.getElementById("Kto").innerHTML = "O WINS";
+			}
+			else if(data.status == 2)
+			{
+				document.getElementById("Kto").innerHTML = "X WINS";
+			}
+			else if(data.status == 3)
+			{
+				document.getElementById("Kto").innerHTML = "TIE";
+			}
 			popraw();
 		}
 		tictactoeConn.init(displayField);
