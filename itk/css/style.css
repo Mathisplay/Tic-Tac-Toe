@@ -171,7 +171,7 @@ canvas.One
   	background: -ms-linear-gradient(top, #8fffad, #39cc67);
   	background: -o-linear-gradient(top, #8fffad, #39cc67);
   	background-image: -ms-linear-gradient(top, #8fffad 0%, #39cc67 100%);
-  	padding: 1vh 1vw;
+  	padding: 1vh 10vw;
   	-webkit-border-radius: 0px;
   	-moz-border-radius: 0px;
   	border-radius: 0px;
