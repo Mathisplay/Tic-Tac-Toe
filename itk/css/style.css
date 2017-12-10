@@ -121,7 +121,7 @@ div.Back
 	position: absolute;
 	margin-left: 74.65vh;
 	width: 10vw;
-	top: 0.35vh;
+	top: 1vh;
 }
 
 div.Logout
@@ -130,7 +130,7 @@ div.Logout
 	position: absolute;
 	margin-left: 89.65vh;
 	width: 10vw;
-	top: 0.35vh;
+	top: 1vh;
 }
 
 canvas.One
@@ -249,7 +249,7 @@ canvas.One
   	box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 0px 0;
   	text-shadow: #7fbd88 0 1px 0;
   	color: #000000;
-  	font-size: 4vh;
+  	font-size: 3vh;
   	font-family: 'Akashi';
   	text-decoration: none;
   	vertical-align: middle;
