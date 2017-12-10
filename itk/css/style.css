@@ -162,51 +162,52 @@ canvas.One
 
 .rewanz
 {
-   border: 1px solid #000000;
-   background: #3e779d;
-   background: -webkit-gradient(linear, left top, left bottom, from(#7ef27e), to(#49e549));
-   background: -webkit-linear-gradient(top, #7ef27e, #49e549);
-   background: -moz-linear-gradient(top, #7ef27e, #49e549);
-   background: -ms-linear-gradient(top, #7ef27e, #49e549);
-   background: -o-linear-gradient(top, #7ef27e, #49e549);
-   background-image: -ms-linear-gradient(top, #7ef27e 0%, #49e549 100%);
-   padding: 15.5px 31px;
-   -webkit-border-radius: 0px;
-   -moz-border-radius: 0px;
-   border-radius: 0px;
-   -webkit-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 0px 0;
-   -moz-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 0px 0;
-   box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 0px 0;
-   text-shadow: #7fbd88 0 1px 0;
-   color: #000000;
-   font-size: 24px;
-   font-family: 'Akashi';
-   text-decoration: none;
-   vertical-align: middle;
+   	border: 1px solid #000000;
+	
+	text-shadow: #0e752f 0 1px 0;
+   	background: #39cc67;
+   	background: -webkit-gradient(linear, left top, left bottom, from(#8fffad), to(#39cc67));
+   	background: -webkit-linear-gradient(top, #8fffad, #39cc67);
+  	background: -moz-linear-gradient(top, #8fffad, #39cc67);
+  	background: -ms-linear-gradient(top, #8fffad, #39cc67);
+  	background: -o-linear-gradient(top, #8fffad, #39cc67);
+  	background-image: -ms-linear-gradient(top, #8fffad 0%, #39cc67 100%);
+  	padding: 15.5px 31px;
+  	-webkit-border-radius: 0px;
+  	-moz-border-radius: 0px;
+  	border-radius: 0px;
+  	-webkit-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 0px 0;
+  	-moz-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 0px 0;
+  	box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 0px 0;
+  	text-shadow: #7fbd88 0 1px 0;
+  	color: #000000;
+  	font-size: 24px;
+  	font-family: 'Akashi';
+  	text-decoration: none;
+  	vertical-align: middle;
 }
 .rewanz:hover
 {
-   border: 1px solid #0a3c59;
-   text-shadow: #0e752f 0 1px 0;
-   background: #39cc67;
-   background: -webkit-gradient(linear, left top, left bottom, from(#8fffad), to(#39cc67));
-   background: -webkit-linear-gradient(top, #8fffad, #39cc67);
-   background: -moz-linear-gradient(top, #8fffad, #39cc67);
-   background: -ms-linear-gradient(top, #8fffad, #39cc67);
-   background: -o-linear-gradient(top, #8fffad, #39cc67);
-   background-image: -ms-linear-gradient(top, #8fffad 0%, #39cc67 100%);
-   color: #004a02;
+  	border: 1px solid #0a3c59;
+   	background: #3e779d;
+  	background: -webkit-gradient(linear, left top, left bottom, from(#7ef27e), to(#49e549));
+  	background: -webkit-linear-gradient(top, #7ef27e, #49e549);
+  	background: -moz-linear-gradient(top, #7ef27e, #49e549);
+  	background: -ms-linear-gradient(top, #7ef27e, #49e549);
+  	background: -o-linear-gradient(top, #7ef27e, #49e549);
+  	background-image: -ms-linear-gradient(top, #7ef27e 0%, #49e549 100%);
+  	color: #004a02;
 }
 .rewanz:active
 {
-   text-shadow: #000000 0 1px 0;
-   border: 1px solid #000000;
-   background: #e89056;
-   background: -webkit-gradient(linear, left top, left bottom, from(#9c893e), to(#39cc67));
-   background: -webkit-linear-gradient(top, #9c893e, #e89056);
-   background: -moz-linear-gradient(top, #9c893e, #e89056);
-   background: -ms-linear-gradient(top, #9c893e, #e89056);
-   background: -o-linear-gradient(top, #9c893e, #e89056);
-   background-image: -ms-linear-gradient(top, #9c893e 0%, #e89056 100%);
-   color: #fff;
+  	text-shadow: #000000 0 1px 0;
+  	border: 1px solid #000000;
+  	background: #e89056;
+  	background: -webkit-gradient(linear, left top, left bottom, from(#9c893e), to(#39cc67));
+  	background: -webkit-linear-gradient(top, #9c893e, #e89056);
+  	background: -moz-linear-gradient(top, #9c893e, #e89056);
+  	background: -ms-linear-gradient(top, #9c893e, #e89056);
+  	background: -o-linear-gradient(top, #9c893e, #e89056);
+  	background-image: -ms-linear-gradient(top, #9c893e 0%, #e89056 100%);
+  	color: #fff;
 }
