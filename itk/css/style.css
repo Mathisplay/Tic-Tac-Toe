@@ -110,7 +110,7 @@ div.Revenge
 {
 	text-align: center;
 	position: absolute;
-	margin-left: 30vw;
+	margin-left: 35vw;
 	width: 30vw;
 	top: 60vh;
 }
@@ -171,7 +171,7 @@ canvas.One
   	background: -ms-linear-gradient(top, #8fffad, #39cc67);
   	background: -o-linear-gradient(top, #8fffad, #39cc67);
   	background-image: -ms-linear-gradient(top, #8fffad 0%, #39cc67 100%);
-  	padding: 1vh 10vw;
+  	padding: 1vh 5vw;
   	-webkit-border-radius: 0px;
   	-moz-border-radius: 0px;
   	border-radius: 0px;
