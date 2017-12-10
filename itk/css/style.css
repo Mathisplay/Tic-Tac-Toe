@@ -121,7 +121,8 @@ div.Back
 	position: absolute;
 	margin-left: 74.65vh;
 	width: 10vw;
-	top: 1vh;
+	height: 4vw;
+	top: 0.5vh;
 }
 
 div.Logout
@@ -130,7 +131,8 @@ div.Logout
 	position: absolute;
 	margin-left: 89.65vh;
 	width: 10vw;
-	top: 1vh;
+	height: 4vw;
+	top: 0.5vh;
 }
 
 canvas.One
